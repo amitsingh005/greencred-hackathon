@@ -28,5 +28,6 @@ urlpatterns = [
     path('profile/', profile_page),
     path('actions/', actions_page),
     path('leaderboard/', leaderboard_page),
+    path('leaderboard/', leaderboard_page),
 ]
 

@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>GreenCred 🌱</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenCred</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            margin: 0;
-            font-family: Arial;
-            color: white;
-        }
-
-        .navbar {
-            position: fixed;
-            width: 100%;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            background: rgba(0,0,0,0.6);
-            z-index: 10;
-        }
-
-        .navbar a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-            padding-top: 100px;
-            text-align: center;
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-[#020617] text-white">
 
-<div class="navbar">
-    <h2>🌱 GreenCred</h2>
+    <!-- 🌟 NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-lg border-b border-white/10">
 
-    <div>
-        <a href="/">Home</a>
-        <a href="/login/">Login</a>
-        <a href="/signup/">Signup</a>
-    </div>
-</div>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-<div class="content">
-    {% block content %}{% endblock %}
-</div>
+            <!-- LOGO -->
+            <h1 class="text-xl font-bold text-green-400">🌱 GreenCred</h1>
+
+            <!-- LINKS -->
+            <div class="hidden md:flex space-x-8 text-gray-300">
+                <a href="/" class="hover:text-green-400 transition">Home</a>
+                <a href="/dashboard/" class="hover:text-green-400 transition">Dashboard</a>
+                <a href="/profile/" class="hover:text-green-400 transition">Profile</a>
+                <a href="/actions/" class="hover:text-green-400 transition">Actions</a>
+                <a href="/leaderboard/" class="hover:text-green-400 transition">Leaderboard</a>
+            </div>
+
+            <!-- CTA -->
+            <a href="/signup/" 
+               class="bg-green-500 hover:bg-green-600 px-5 py-2 rounded-lg font-semibold transition">
+               Get Started
+            </a>
+
+        </div>
+    </nav>
+
+    <!-- 🌌 BACKGROUND GRADIENT -->
+    <div class="fixed inset-0 -z-10 bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#020617]"></div>
+
+    <!-- 📦 MAIN CONTENT -->
+    <main class="pt-24 max-w-7xl mx-auto px-6">
+        {% block content %}{% endblock %}
+    </main>
 
 </body>
 </html>

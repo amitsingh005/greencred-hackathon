@@ -6,6 +6,10 @@ from django.shortcuts import render
 from action.models import EcoAction, AIVerification
 from .ai_service import analyze_image
 
+from django.contrib.auth.models import User
+from django.db.models import Sum
+from action.models import EcoAction
+
 
 
 def home_page(request):
@@ -144,4 +148,15 @@ def leaderboard_page(request):
         "users": users[:10],   # top 10
         "rank": rank,
         "me": current_user
+    })
+
+def leaderboard_page(request):
+    leaderboard = (
+        User.objects
+        .annotate(total_points=Sum('ecoaction__credits_awarded'))
+        .order_by('-total_points')
+    )
+
+    return render(request, 'leaderboard.html', {
+        'leaderboard': leaderboard
     })

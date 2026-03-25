@@ -1,0 +1,160 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+/* 🎥 VIDEO BACKGROUND */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    z-index: 0;   /* lowest */
+}
+
+/* DARK OVERLAY */
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 40px;
+
+    background: rgba(0,0,0,0.25);
+    backdrop-filter: blur(12px);
+
+    z-index: 10;   /* 🔥 always on top */
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* LINKS */
+.nav-links a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #e2e8f0;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #22c55e;
+}
+
+/* PAGE CONTENT */
+.page {
+    position: relative;
+    z-index: 5;
+    padding-top: 120px;
+    text-align: center;
+}
+
+/* HERO */
+.hero {
+    margin-top: 80px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    font-weight: bold;
+}
+
+.hero p {
+    margin-top: 10px;
+    color: #cbd5f5;
+}
+
+/* BUTTON */
+.btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+
+    background: linear-gradient(45deg, #22c55e, #4ade80);
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 15px;
+    width: 240px;
+
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+}
+
+/* ANIMATION */
+.fade {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.video-overlay {
+    display: none;
+}

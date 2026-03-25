@@ -1,29 +1,44 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h2>🏆 Leaderboard</h2>
 
-<h3>Your Rank: {{ rank }}</h3>
-<h4>Your Credits: {{ me.green_credits }}</h4>
+<h1 class="text-4xl font-bold mb-10 text-center">
+    🏆 Leaderboard
+</h1>
 
-<hr>
+<div class="max-w-4xl mx-auto">
 
-<table border="1">
-    <tr>
-        <th>Rank</th>
-        <th>User</th>
-        <th>Credits</th>
-    </tr>
+    <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
 
-    {% for user in users %}
-    <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ user.user.username }}</td>
-        <td>{{ user.green_credits }}</td>
-    </tr>
-    {% endfor %}
-</table>
+        {% for user in leaderboard %}
 
-<a href="/dashboard/">Back</a>
+        <div class="flex justify-between items-center px-6 py-4 border-b border-white/10 hover:bg-white/5 transition">
+
+            <div class="flex items-center gap-4">
+
+                <!-- RANK -->
+                <span class="text-lg font-bold text-green-400">
+                    #{{ forloop.counter }}
+                </span>
+
+                <!-- USER -->
+                <span class="font-semibold">
+                    {{ user.username }}
+                </span>
+
+            </div>
+
+            <!-- POINTS -->
+            <span class="text-gray-300">
+                {{ user.total_points|default:0 }} pts
+            </span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
 
 {% endblock %}

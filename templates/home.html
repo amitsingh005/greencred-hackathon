@@ -1,42 +1,121 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
 
-<!-- 🎥 VIDEO BACKGROUND -->
-<video autoplay muted loop id="bg-video">
-    <source src="{% static 'videos/5365208-hd_1920_1080_30fps.mp4' %}" type="video/mp4">
-</video>
+<!-- 🎥 HERO SECTION -->
+<section class="relative h-[90vh] w-full overflow-hidden rounded-2xl mb-20">
 
-<div class="overlay">
-    <h1>🌍 Earn Green Credits</h1>
-    <p>Upload eco actions. Get rewarded. Save Earth.</p>
+    <!-- VIDEO -->
+    <video autoplay muted loop class="absolute w-full h-full object-cover">
+        <source src="{% static 'videos/5365208-hd_1920_1080_30fps.mp4' %}" type="video/mp4">
+    </video>
 
-    <a href="/signup/" class="btn">Get Started 🚀</a>
-</div>
+    <!-- OVERLAY -->
+    <div class="absolute inset-0 bg-black/60"></div>
 
-<style>
-#bg-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-    object-fit: cover;
-}
+    <!-- HERO CONTENT -->
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
 
-.overlay {
-    margin-top: 150px;
-}
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fade">
+            🌍 GreenCred
+        </h1>
 
-.btn {
-    padding: 12px 25px;
-    background: green;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-}
-</style>
+        <p class="text-lg text-gray-300 mb-6 max-w-xl">
+            Turn your real-world eco actions into rewards, credits, and measurable impact.
+        </p>
+
+        <a href="/signup/"
+           class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-xl font-semibold shadow-lg transition">
+            Get Started 🚀
+        </a>
+
+    </div>
+
+</section>
+
+<!-- 🌱 SECTION 1: HOW IT WORKS -->
+<section class="mb-20">
+
+    <h2 class="text-3xl font-bold text-center mb-12">
+        How GreenCred Works
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-lg hover:scale-105 transition">
+            <h3 class="text-xl font-semibold mb-2">📸 Upload</h3>
+            <p class="text-gray-400">
+                Capture eco-friendly actions like planting trees or cleaning areas.
+            </p>
+        </div>
+
+        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-lg hover:scale-105 transition">
+            <h3 class="text-xl font-semibold mb-2">🤖 AI Verify</h3>
+            <p class="text-gray-400">
+                Our AI verifies your action using image recognition.
+            </p>
+        </div>
+
+        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-lg hover:scale-105 transition">
+            <h3 class="text-xl font-semibold mb-2">🏆 Earn Rewards</h3>
+            <p class="text-gray-400">
+                Earn credits, rank on leaderboard, and track your impact.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 🌍 SECTION 2: IMPACT -->
+<section class="mb-20">
+
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+
+        <div>
+            <h2 class="text-3xl font-bold mb-4">
+                Real Impact. Real Change.
+            </h2>
+
+            <p class="text-gray-400 mb-4">
+                Every action you upload contributes to a greener planet. Track your CO₂ savings,
+                earn recognition, and become part of a global eco movement.
+            </p>
+
+            <a href="/dashboard/"
+               class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg font-semibold transition">
+                View Dashboard
+            </a>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-lg text-center">
+            <h3 class="text-2xl font-bold mb-2">🌱 Your Contribution Matters</h3>
+            <p class="text-gray-400">
+                Even small eco actions can create massive environmental change when scaled.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 🚀 SECTION 3: CTA -->
+<section class="text-center mb-20">
+
+    <h2 class="text-3xl font-bold mb-4">
+        Ready to Make Impact?
+    </h2>
+
+    <p class="text-gray-400 mb-6">
+        Join GreenCred and start your journey toward a sustainable future.
+    </p>
+
+    <a href="/signup/"
+       class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-xl font-semibold shadow-lg transition">
+        Join Now 🌍
+    </a>
+
+</section>
 
 {% endblock %}

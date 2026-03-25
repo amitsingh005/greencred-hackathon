@@ -4,3 +4,20 @@ __pycache__/
 db.sqlite3
 .DS_Store
 *.json
+# Python
+__pycache__/
+*.pyc
+
+# Env
+venv/
+.env
+
+# Media uploads (IMPORTANT)
+actions/
+media/
+
+# OS files
+.DS_Store
+
+# Secrets
+*.json
