@@ -20,26 +20,54 @@
 
 <body class="bg-[#F9FAF4] text-[#1E1E1E]">
 
-    <!-- 🌿 NAVBAR -->
-    <nav class="sticky top-0 z-50 bg-white/70 backdrop-blur border-b border-gray-200">
+   <nav class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-lg border-b border-white/10">
 
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            <h1 class="text-xl font-bold text-[#1A4731]">🌱 GreenCred</h1>
+        <!-- LEFT: LOGO -->
+        <div class="flex items-center">
+            <h1 class="text-xl font-bold text-green-400">🌱 GreenCred</h1>
+        </div>
 
-            <div class="hidden md:flex space-x-8 text-gray-600">
-                <a href="/" class="hover:text-[#4CAF50]">Home</a>
-                <a href="/dashboard/" class="hover:text-[#4CAF50]">Dashboard</a>
-                <a href="/actions/" class="hover:text-[#4CAF50]">Actions</a>
-                <a href="/leaderboard/" class="hover:text-[#4CAF50]">Leaderboard</a>
-            </div>
+        <!-- CENTER: NAV LINKS -->
+        <div class="hidden md:flex space-x-8 text-gray-300">
+            <a href="/" class="hover:text-green-400 transition">Home</a>
+            <a href="/dashboard/" class="hover:text-green-400 transition">Dashboard</a>
+            <a href="/actions/" class="hover:text-green-400 transition">Actions</a>
+            <a href="/leaderboard/" class="hover:text-green-400 transition">Leaderboard</a>
+        </div>
 
-            <a href="/signup/" class="bg-[#4CAF50] text-white px-5 py-2 rounded-lg hover:bg-green-600">
-                Get Started
-            </a>
+        <!-- RIGHT: AUTH -->
+        <div class="flex items-center space-x-4">
+
+            {% if user.is_authenticated %}
+                <span class="text-gray-300 hidden md:block">
+                    Hi, {{ user.username }}
+                </span>
+
+                <a href="/logout/"
+                   class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-white transition">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/login/"
+                   class="text-gray-300 hover:text-green-400 transition">
+                    Login
+                </a>
+
+                <a href="/signup/"
+                   class="bg-green-500 hover:bg-green-600 px-5 py-2 rounded-lg font-semibold transition">
+                    Get Started
+                </a>
+
+            {% endif %}
 
         </div>
-    </nav>
+
+    </div>
+</nav>
 
     <!-- MAIN -->
     <main class="max-w-7xl mx-auto px-6">

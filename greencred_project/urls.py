@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import home_page, login_page, signup_page, dashboard_page,profile_page,actions_page, leaderboard_page
-
+from users.views import home_page, login_page, signup_page, dashboard_page,profile_page,actions_page, leaderboard_page, logout_page
+from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('profile/', profile_page),
     path('actions/', actions_page),
     path('leaderboard/', leaderboard_page),
-    path('leaderboard/', leaderboard_page),
+    path('accounts/', include('allauth.urls')),
+    path('logout/', logout_page),
 ]
 

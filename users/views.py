@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from action.models import EcoAction, AIVerification
 from .ai_service import analyze_image
+from django.contrib.auth import logout
 
 from django.contrib.auth.models import User
 from django.db.models import Sum
@@ -106,13 +107,16 @@ def leaderboard_page(request):
         "me": current_user
     })
 
+
 def leaderboard_page(request):
-    leaderboard = (
-        User.objects
-        .annotate(total_points=Sum('ecoaction__credits_awarded'))
-        .order_by('-total_points')
-    )
+    users = User.objects.select_related('userprofile')\
+        .all()\
+        .order_by('-userprofile__points')   # ✅ correct
 
     return render(request, 'leaderboard.html', {
-        'leaderboard': leaderboard
+        'users': users,
+        'top3': users[:3]
     })
+def logout_page(request):
+    logout(request)
+    return redirect('/')
