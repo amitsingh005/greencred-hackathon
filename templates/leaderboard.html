@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🏆 Leaderboard</h2>
+
+<h3>Your Rank: {{ rank }}</h3>
+<h4>Your Credits: {{ me.green_credits }}</h4>
+
+<hr>
+
+<table border="1">
+    <tr>
+        <th>Rank</th>
+        <th>User</th>
+        <th>Credits</th>
+    </tr>
+
+    {% for user in users %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ user.user.username }}</td>
+        <td>{{ user.green_credits }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/dashboard/">Back</a>
+
+{% endblock %}
