@@ -128,3 +128,20 @@ def actions_page(request):
         "result": result_data,
         "error": error
     })
+
+from .models import UserProfile
+
+@login_required
+def leaderboard_page(request):
+    users = UserProfile.objects.all().order_by('-green_credits')
+
+    current_user = request.user.userprofile
+
+    # rank calculation
+    rank = list(users).index(current_user) + 1
+
+    return render(request, 'leaderboard.html', {
+        "users": users[:10],   # top 10
+        "rank": rank,
+        "me": current_user
+    })
