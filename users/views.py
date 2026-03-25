@@ -10,7 +10,10 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from action.models import EcoAction
 
-
+import base64
+from django.core.files.base import ContentFile
+from .ai_service import analyze_image
+from .models import UserProfile
 
 def home_page(request):
     return render(request, 'home.html')
@@ -61,79 +64,32 @@ def profile_page(request):
     })
 
 
-@login_required
+
 def actions_page(request):
     result_data = None
     error = None
 
     if request.method == "POST":
-        photo = request.FILES.get('photo')
-
-        # ❌ No file
-        if not photo:
-            error = "No file uploaded"
-            return render(request, 'actions.html', {"error": error})
-
-        # ✅ Create action first
-        action = EcoAction.objects.create(
-            user=request.user,
-            action_type='plant_tree',
-            photo=photo
-        )
+        image_data = request.POST.get("image_data")
 
         try:
-            # 🔥 IMPORTANT: reset file pointer
-            photo.seek(0)
+            if image_data:
+                # 🔥 Convert base64 → image file
+                format, imgstr = image_data.split(';base64,')
+                ext = format.split('/')[-1]
 
-            # 🧠 AI ANALYSIS
-            result = analyze_image(photo)
+                file = ContentFile(base64.b64decode(imgstr), name='capture.' + ext)
 
-            confidence = result.get('confidence', 0)
-            labels = result.get('labels', [])
-
-            # 🎯 DECISION LOGIC
-            if confidence > 0.7:
-                status = 'verified'
-                action.status = 'verified'
-                action.credits_awarded = 50
-
-                # ✅ UPDATE USER PROFILE (IMPORTANT)
-                profile = request.user.userprofile
-                profile.green_credits += 50
-                profile.weekly_credits += 50
-                profile.save()
-
-            else:
-                status = 'rejected'
-                action.status = 'rejected'
-
-            action.save()
-
-            # 📊 SAVE AI RESULT
-            AIVerification.objects.create(
-                action=action,
-                vision_confidence=confidence,
-                detected_labels=", ".join(labels),
-                verification_status=status
-            )
-
-            # 📦 RESPONSE DATA
-            result_data = {
-                "confidence": round(confidence, 2),
-                "status": status,
-                "labels": labels
-            }
+                # 🔥 AI analysis
+                result_data = analyze_image(file)
 
         except Exception as e:
-            print("ACTION ERROR:", e)
-            error = "AI processing failed"
+            error = str(e)
 
     return render(request, 'actions.html', {
         "result": result_data,
         "error": error
     })
-
-from .models import UserProfile
 
 @login_required
 def leaderboard_page(request):
