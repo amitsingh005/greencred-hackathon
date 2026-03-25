@@ -31,3 +31,9 @@ def signup_page(request):
         return redirect('/dashboard/')
 
     return render(request, 'signup.html')
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def dashboard_page(request):
+    return render(request, 'dashboard.html')
