@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Upload Eco Action 🌱</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="photo" required>
+    <button type="submit">Upload</button>
+</form>
+
+{% if result %}
+    <h3>Result:</h3>
+    <p><b>Status:</b> {{ result.status }}</p>
+    <p><b>Confidence:</b> {{ result.confidence }}</p>
+    <p><b>Detected:</b> {{ result.labels }}</p>
+{% endif %}
+
+<a href="/dashboard/">Back</a>
+{% endblock %}
