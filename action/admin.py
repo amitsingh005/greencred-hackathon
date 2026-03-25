@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import EcoAction, Challenge, AIVerification
 
-# Register your models here.
+admin.site.register(EcoAction)
+admin.site.register(Challenge)
+admin.site.register(AIVerification)
