@@ -16,7 +16,7 @@ class UserProfile(models.Model):
 
     total_co2_saved_kg = models.FloatField(default=0.0)
     streak_days = models.IntegerField(default=0)
-
+    oauth_uid = models.CharField(max_length=255, default="default")
     trust_score = models.FloatField(default=1.0)
 
     created_at = models.DateTimeField(auto_now_add=True)
