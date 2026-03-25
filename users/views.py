@@ -37,3 +37,10 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def dashboard_page(request):
     return render(request, 'dashboard.html')
+@login_required
+def profile_page(request):
+    profile = request.user.userprofile
+
+    return render(request, 'profile.html', {
+        "profile": profile
+    })
