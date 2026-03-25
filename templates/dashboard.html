@@ -2,114 +2,121 @@
 
 {% block content %}
 
-<!-- HEADER -->
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+<div class="py-10">
 
-    <div>
-        <h1 class="text-4xl font-bold">Dashboard 🚀</h1>
-        <p class="text-gray-400 mt-1">
-            Welcome back, {{ user.username }} 👋
-        </p>
+    <!-- 🌟 HEADER -->
+    <div class="flex justify-between items-center mb-10">
+        <div>
+            <h1 class="text-3xl font-bold text-[#1A4731]">
+                Dashboard 🚀
+            </h1>
+            <p class="text-gray-500">
+                Welcome back, {{ request.user.username }}
+            </p>
+        </div>
+
+        <a href="/actions/" 
+           class="bg-[#4CAF50] text-white px-6 py-2 rounded-lg hover:bg-green-600 transition">
+            + Upload Action
+        </a>
     </div>
 
-    <a href="/actions/"
-       class="mt-4 md:mt-0 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold shadow-lg transition">
-        📸 Upload Action
-    </a>
+    <!-- 📊 STATS CARDS -->
+    <div class="grid md:grid-cols-4 gap-6 mb-10">
 
-</div>
+        <!-- CARD -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <p class="text-gray-500">Total Credits</p>
+            <h2 class="text-2xl font-bold">{{ total_credits|default:"0" }}</h2>
+        </div>
 
-<!-- STATS -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <p class="text-gray-500">Weekly Credits</p>
+            <h2 class="text-2xl font-bold">{{ weekly_credits|default:"0" }}</h2>
+        </div>
 
-    <!-- TOTAL -->
-    <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-lg hover:scale-105 transition">
-        <p class="text-gray-400 text-sm">🌱 Total Credits</p>
-        <h2 class="text-3xl font-bold text-green-400 mt-2">
-            {{ user.userprofile.green_credits }}
-        </h2>
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <p class="text-gray-500">CO₂ Saved</p>
+            <h2 class="text-2xl font-bold">{{ co2_saved|default:"0.0" }} kg</h2>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <p class="text-gray-500">Eco Score</p>
+            <h2 class="text-2xl font-bold text-green-600">
+                {{ eco_score|default:"A" }}
+            </h2>
+        </div>
+
     </div>
 
-    <!-- WEEKLY -->
-    <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-lg hover:scale-105 transition">
-        <p class="text-gray-400 text-sm">🔥 Weekly Credits</p>
-        <h2 class="text-3xl font-bold mt-2">
-            {{ user.userprofile.weekly_credits }}
-        </h2>
-    </div>
+    <!-- 📈 MAIN GRID -->
+    <div class="grid md:grid-cols-3 gap-6">
 
-    <!-- CO2 -->
-    <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-lg hover:scale-105 transition">
-        <p class="text-gray-400 text-sm">🌍 CO₂ Saved</p>
-        <h2 class="text-3xl font-bold text-blue-400 mt-2">
-            {{ user.userprofile.total_co2_saved_kg }} kg
-        </h2>
-    </div>
+        <!-- 📊 PROGRESS -->
+        <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-md border">
 
-</div>
+            <h2 class="text-xl font-semibold mb-4">
+                📈 Progress
+            </h2>
 
-<!-- MAIN GRID -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-    <!-- LEFT SECTION -->
-    <div class="lg:col-span-2 space-y-6">
-
-        <!-- PROGRESS -->
-        <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-lg">
-
-            <h3 class="text-lg font-semibold mb-4">📈 Your Impact Progress</h3>
-
-            <p class="text-gray-400 mb-2">Level Progress</p>
-
-            <div class="w-full bg-gray-700 rounded-full h-3">
-                <div class="bg-green-400 h-3 rounded-full transition-all duration-500"
-                     style="width: 40%">
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+                <div class="bg-[#4CAF50] h-4 rounded-full transition-all duration-500"
+                     style="width: {{ progress|default:60 }}%;">
                 </div>
             </div>
 
+            <p class="text-gray-500">
+                You are {{ progress|default:60 }}% towards next level 🌱
+            </p>
+
         </div>
 
-        <!-- RECENT ACTIVITY (future ready) -->
-        <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-lg">
+        <!-- 🏆 LEADERBOARD -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
 
-            <h3 class="text-lg font-semibold mb-4">🧾 Recent Activity</h3>
+            <h2 class="text-xl font-semibold mb-4">
+                🏆 Leaderboard
+            </h2>
 
-            <p class="text-gray-400 text-sm">
-                No actions yet. Start by uploading your first eco action 🌱
-            </p>
+            <div class="space-y-4">
+
+                {% for user in leaderboard %}
+                <div class="flex justify-between items-center">
+                    <p class="font-medium">{{ user.username }}</p>
+                    <span class="text-green-600 font-semibold">
+                        {{ user.points }} pts
+                    </span>
+                </div>
+                {% empty %}
+                <p class="text-gray-500">No data yet</p>
+                {% endfor %}
+
+            </div>
 
         </div>
 
     </div>
 
-    <!-- RIGHT SECTION -->
-    <div class="space-y-6">
+    <!-- 🌱 RECENT ACTIONS -->
+    <div class="mt-10 bg-white p-6 rounded-2xl shadow-md border">
 
-        <!-- PROFILE CARD -->
-        <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-lg text-center">
+        <h2 class="text-xl font-semibold mb-4">
+            🌱 Recent Actions
+        </h2>
 
-            <div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center text-xl font-bold text-black">
-                {{ user.username|first|upper }}
+        <div class="space-y-4">
+
+            {% for action in actions %}
+            <div class="flex justify-between items-center border-b pb-2">
+                <p>{{ action.description }}</p>
+                <span class="text-green-600 font-semibold">
+                    +{{ action.points }} pts
+                </span>
             </div>
-
-            <h3 class="mt-4 text-lg font-semibold">{{ user.username }}</h3>
-            <p class="text-gray-400 text-sm">Eco Contributor 🌱</p>
-
-        </div>
-
-        <!-- QUICK ACTION -->
-        <div class="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl text-center shadow-lg">
-
-            <h3 class="text-lg font-semibold mb-2">Start Contributing 🌍</h3>
-
-            <p class="text-sm mb-4">
-                Upload eco-friendly actions and earn rewards
-            </p>
-
-            <a href="/actions/"
-               class="bg-black text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800 transition">
-                Upload Now
-            </a>
+            {% empty %}
+            <p class="text-gray-500">No actions yet</p>
+            {% endfor %}
 
         </div>
 
