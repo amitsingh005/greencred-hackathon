@@ -25,9 +25,14 @@ def signup_page(request):
         username = request.POST['username']
         password = request.POST['password']
 
+        # ✅ check if username exists
+        if User.objects.filter(username=username).exists():
+            return render(request, 'signup.html', {
+                "error": "Username already exists"
+            })
+
         user = User.objects.create_user(username=username, password=password)
         login(request, user)
-
         return redirect('/dashboard/')
 
     return render(request, 'signup.html')
