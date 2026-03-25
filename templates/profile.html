@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>User Profile 👤</h2>
+
+<p>Name: {{ profile.full_name }}</p>
+<p>Email: {{ profile.email }}</p>
+
+<p>Green Credits: {{ profile.green_credits }}</p>
+<p>Weekly Credits: {{ profile.weekly_credits }}</p>
+
+<p>CO2 Saved: {{ profile.total_co2_saved_kg }} kg</p>
+<p>Streak: {{ profile.streak_days }} days</p>
+
+<a href="/dashboard/">Back to Dashboard</a>
+{% endblock %}
