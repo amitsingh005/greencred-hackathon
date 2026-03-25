@@ -1,23 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>GreenCred</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>GreenCred 🌱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            color: white;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.6);
+            z-index: 10;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding-top: 100px;
+            text-align: center;
+        }
+    </style>
 </head>
 
-<body class="bg-black text-white">
+<body>
 
-<nav class="flex justify-between p-4 bg-gray-900">
-    <h1 class="text-green-400 text-xl font-bold">GreenCred 🌱</h1>
+<div class="navbar">
+    <h2>🌱 GreenCred</h2>
 
-    <div class="space-x-4">
+    <div>
         <a href="/">Home</a>
         <a href="/login/">Login</a>
         <a href="/signup/">Signup</a>
     </div>
-</nav>
+</div>
 
-<div class="p-6">
+<div class="content">
     {% block content %}{% endblock %}
 </div>
 

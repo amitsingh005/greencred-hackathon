@@ -1,14 +1,42 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<div class="text-center mt-20">
-    <h1 class="text-4xl font-bold text-green-400">Welcome to GreenCred 🌍</h1>
-    <p class="mt-4 text-gray-300">Earn rewards by saving the planet</p>
+<!-- 🎥 VIDEO BACKGROUND -->
+<video autoplay muted loop id="bg-video">
+    <source src="{% static 'videos/5365208-hd_1920_1080_30fps.mp4' %}" type="video/mp4">
+</video>
 
-    <div class="mt-6">
-        <a href="/signup/" class="bg-green-500 px-6 py-2 rounded">Get Started</a>
-    </div>
+<div class="overlay">
+    <h1>🌍 Earn Green Credits</h1>
+    <p>Upload eco actions. Get rewarded. Save Earth.</p>
+
+    <a href="/signup/" class="btn">Get Started 🚀</a>
 </div>
+
+<style>
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.overlay {
+    margin-top: 150px;
+}
+
+.btn {
+    padding: 12px 25px;
+    background: green;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+</style>
 
 {% endblock %}
