@@ -3,64 +3,61 @@
 
 {% block content %}
 
-<!-- 🎥 HERO SECTION -->
-<section class="relative h-[90vh] w-full overflow-hidden rounded-2xl mb-20">
+<!-- 🌿 HERO -->
+<section class="py-20 text-center">
 
-    <!-- VIDEO -->
-    <video autoplay muted loop class="absolute w-full h-full object-cover">
-        <source src="{% static 'videos/5365208-hd_1920_1080_30fps.mp4' %}" type="video/mp4">
-    </video>
+    <h1 class="text-5xl font-extrabold mb-6 text-[#1A4731]">
+        Track Your Impact. Build a Greener Future 🌱
+    </h1>
 
-    <!-- OVERLAY -->
-    <div class="absolute inset-0 bg-black/60"></div>
+    <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-8">
+        GreenCred helps you measure your sustainability, improve eco habits, and contribute to real environmental change.
+    </p>
 
-    <!-- HERO CONTENT -->
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-
-        <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fade">
-            🌍 GreenCred
-        </h1>
-
-        <p class="text-lg text-gray-300 mb-6 max-w-xl">
-            Turn your real-world eco actions into rewards, credits, and measurable impact.
-        </p>
-
-        <a href="/signup/"
-           class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-xl font-semibold shadow-lg transition">
-            Get Started 🚀
+    <div class="flex justify-center gap-4">
+        <a href="/signup/" class="bg-[#4CAF50] text-white px-8 py-3 rounded-xl font-semibold hover:bg-green-600 transition">
+            Start Tracking
         </a>
+        <a href="#features" class="border border-[#4CAF50] text-[#4CAF50] px-8 py-3 rounded-xl hover:bg-[#4CAF50] hover:text-white transition">
+            Learn More
+        </a>
+    </div>
 
+    <!-- MOCK IMAGE -->
+    <div class="mt-16">
+        <img src="{% static 'images/dashboard.png' %}" 
+             class="mx-auto rounded-2xl shadow-lg border border-gray-200">
     </div>
 
 </section>
 
-<!-- 🌱 SECTION 1: HOW IT WORKS -->
-<section class="mb-20">
+<!-- 🌱 FEATURES -->
+<section id="features" class="py-20">
 
-    <h2 class="text-3xl font-bold text-center mb-12">
-        How GreenCred Works
+    <h2 class="text-3xl font-bold text-center mb-16 text-[#1A4731]">
+        Powerful Sustainability Tracking
     </h2>
 
     <div class="grid md:grid-cols-3 gap-8">
 
-        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-lg hover:scale-105 transition">
-            <h3 class="text-xl font-semibold mb-2">📸 Upload</h3>
-            <p class="text-gray-400">
-                Capture eco-friendly actions like planting trees or cleaning areas.
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <h3 class="text-xl font-semibold mb-2">🌍 Carbon Tracking</h3>
+            <p class="text-gray-500">
+                Measure and reduce your carbon footprint in real time.
             </p>
         </div>
 
-        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-lg hover:scale-105 transition">
-            <h3 class="text-xl font-semibold mb-2">🤖 AI Verify</h3>
-            <p class="text-gray-400">
-                Our AI verifies your action using image recognition.
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <h3 class="text-xl font-semibold mb-2">📊 Eco Score</h3>
+            <p class="text-gray-500">
+                Get a personalized eco score based on your actions.
             </p>
         </div>
 
-        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-lg hover:scale-105 transition">
-            <h3 class="text-xl font-semibold mb-2">🏆 Earn Rewards</h3>
-            <p class="text-gray-400">
-                Earn credits, rank on leaderboard, and track your impact.
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <h3 class="text-xl font-semibold mb-2">🌱 Green Habits</h3>
+            <p class="text-gray-500">
+                Build sustainable habits and track daily improvements.
             </p>
         </div>
 
@@ -68,54 +65,114 @@
 
 </section>
 
-<!-- 🌍 SECTION 2: IMPACT -->
-<section class="mb-20">
+<!-- 📊 STATS -->
+<section class="bg-[#1A4731] text-white py-20 rounded-2xl">
 
-    <div class="grid md:grid-cols-2 gap-10 items-center">
+    <div class="grid md:grid-cols-3 text-center gap-8">
 
         <div>
-            <h2 class="text-3xl font-bold mb-4">
-                Real Impact. Real Change.
-            </h2>
-
-            <p class="text-gray-400 mb-4">
-                Every action you upload contributes to a greener planet. Track your CO₂ savings,
-                earn recognition, and become part of a global eco movement.
-            </p>
-
-            <a href="/dashboard/"
-               class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg font-semibold transition">
-                View Dashboard
-            </a>
+            <h3 class="text-4xl font-bold">12,000+</h3>
+            <p class="text-gray-200">Tons of CO₂ Tracked</p>
         </div>
 
-        <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-lg text-center">
-            <h3 class="text-2xl font-bold mb-2">🌱 Your Contribution Matters</h3>
-            <p class="text-gray-400">
-                Even small eco actions can create massive environmental change when scaled.
-            </p>
+        <div>
+            <h3 class="text-4xl font-bold">50K+</h3>
+            <p class="text-gray-200">Eco Actions Completed</p>
+        </div>
+
+        <div>
+            <h3 class="text-4xl font-bold">20K+</h3>
+            <p class="text-gray-200">Active Users</p>
         </div>
 
     </div>
 
 </section>
 
-<!-- 🚀 SECTION 3: CTA -->
-<section class="text-center mb-20">
+<!-- ⚙️ HOW IT WORKS -->
+<section class="py-20">
 
-    <h2 class="text-3xl font-bold mb-4">
-        Ready to Make Impact?
+    <h2 class="text-3xl font-bold text-center mb-16 text-[#1A4731]">
+        How It Works
     </h2>
 
-    <p class="text-gray-400 mb-6">
-        Join GreenCred and start your journey toward a sustainable future.
+    <div class="grid md:grid-cols-3 gap-10 text-center">
+
+        <div>
+            <h3 class="text-xl font-semibold mb-2">1️⃣ Track</h3>
+            <p class="text-gray-500">Upload eco-friendly actions</p>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-2">2️⃣ Verify</h3>
+            <p class="text-gray-500">AI verifies your contribution</p>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-2">3️⃣ Earn</h3>
+            <p class="text-gray-500">Get rewards & improve ranking</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 💬 TESTIMONIALS -->
+<section class="py-20">
+
+    <h2 class="text-3xl font-bold text-center mb-16 text-[#1A4731]">
+        What Users Say
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <p class="text-gray-500 mb-4">
+                “GreenCred changed how I think about sustainability.”
+            </p>
+            <h4 class="font-semibold">– Amit</h4>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <p class="text-gray-500 mb-4">
+                “Tracking my eco score is addictive and meaningful.”
+            </p>
+            <h4 class="font-semibold">– Rahul</h4>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md border">
+            <p class="text-gray-500 mb-4">
+                “Finally, a platform that rewards real impact.”
+            </p>
+            <h4 class="font-semibold">– Priya</h4>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 🚀 CTA -->
+<section class="bg-[#4CAF50] text-white py-20 rounded-2xl text-center">
+
+    <h2 class="text-3xl font-bold mb-4">
+        Ready to Make a Difference?
+    </h2>
+
+    <p class="mb-6">
+        Join GreenCred and start tracking your sustainability today.
     </p>
 
-    <a href="/signup/"
-       class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-xl font-semibold shadow-lg transition">
-        Join Now 🌍
+    <a href="/signup/" class="bg-white text-[#4CAF50] px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 transition">
+        Get Started
     </a>
 
 </section>
+
+<!-- 🔻 FOOTER -->
+<footer class="py-10 text-center text-gray-500">
+
+    <p>© 2026 GreenCred. All rights reserved.</p>
+
+</footer>
 
 {% endblock %}
