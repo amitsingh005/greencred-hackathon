@@ -6,7 +6,7 @@ from django.shortcuts import render
 from action.models import EcoAction, AIVerification
 from .ai_service import analyze_image
 from django.contrib.auth import logout
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from action.models import EcoAction
@@ -56,12 +56,14 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def dashboard_page(request):
     return render(request, 'dashboard.html')
+
+
 @login_required
 def profile_page(request):
     profile = request.user.userprofile
 
     return render(request, 'profile.html', {
-        "profile": profile
+        'profile': profile
     })
 
 
@@ -92,20 +94,7 @@ def actions_page(request):
         "error": error
     })
 
-@login_required
-def leaderboard_page(request):
-    users = UserProfile.objects.all().order_by('-green_credits')
 
-    current_user = request.user.userprofile
-
-    # rank calculation
-    rank = list(users).index(current_user) + 1
-
-    return render(request, 'leaderboard.html', {
-        "users": users[:10],   # top 10
-        "rank": rank,
-        "me": current_user
-    })
 
 
 def leaderboard_page(request):

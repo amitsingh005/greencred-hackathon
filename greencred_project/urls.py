@@ -25,7 +25,7 @@ urlpatterns = [
     path('login/', login_page),
     path('signup/', signup_page),
     path('dashboard/', dashboard_page),
-    path('profile/', profile_page),
+    path('profile/', profile_page, name='profile'),
     path('actions/', actions_page),
     path('leaderboard/', leaderboard_page),
     path('accounts/', include('allauth.urls')),
